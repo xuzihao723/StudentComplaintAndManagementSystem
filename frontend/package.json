@@ -1,0 +1,21 @@
+{
+  "name": "student-complaint-feedback-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "axios": "^1.7.7",
+    "element-plus": "^2.8.6",
+    "lucide-vue-next": "^0.468.0",
+    "vue": "^3.5.12",
+    "vite": "^5.4.10"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.4"
+  }
+}

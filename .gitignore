@@ -1,0 +1,26 @@
+.idea/
+.vscode/
+.env
+*.log
+
+# Backend local runtime data
+backend/data/
+backend/uploads/
+backend/target/
+backend/*.log
+backend/*.err.log
+
+# Frontend local runtime data
+frontend/node_modules/
+frontend/dist/
+frontend/.edge-profile/
+frontend/.edge-profile-mobile/
+frontend/*.log
+frontend/*.err.log
+frontend/ui-redesign-*.png
+
+# Generic build/runtime output
+target/
+node_modules/
+dist/
+uploads/
