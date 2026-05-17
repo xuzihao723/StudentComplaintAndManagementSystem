@@ -1567,19 +1567,129 @@ a:focus-visible,
   }
 
   .cc-showcase {
-    display: none;
+    display: flex;
+    min-height: 260px;
+    padding: 28px 32px;
+    isolation: isolate;
   }
 
   .cc-login-side {
     align-items: flex-start;
-    min-height: 100dvh;
-    padding: 48px 32px 32px;
+    min-height: auto;
+    padding: 40px 32px 32px;
   }
 
   .cc-mobile-brand {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 48px;
+    display: none;
+  }
+
+  .cc-showcase .cc-brand {
+    color: hsl(0 0% 100%);
+  }
+
+  .cc-characters {
+    position: absolute;
+    right: clamp(12px, 8vw, 88px);
+    bottom: -20px;
+    width: 430px;
+    height: 230px;
+    margin: 0;
+  }
+
+  .cc-block {
+    bottom: 0;
+  }
+
+  .cc-block-purple {
+    left: 76px;
+    width: 112px;
+    height: 230px;
+  }
+
+  .cc-block-charcoal {
+    left: 184px;
+    width: 78px;
+    height: 176px;
+  }
+
+  .cc-block-coral {
+    left: 28px;
+    width: 156px;
+    height: 118px;
+    border-radius: 78px 78px 0 0;
+  }
+
+  .cc-block-yellow {
+    left: 244px;
+    width: 92px;
+    height: 138px;
+    border-radius: 46px 46px 0 0;
+  }
+
+  .cc-eyes-lg {
+    left: calc(28px + var(--purple-face-x));
+    top: calc(28px + var(--purple-face-y));
+    gap: 20px;
+  }
+
+  .cc-eyes-md {
+    top: calc(24px + var(--charcoal-face-y));
+    left: calc(18px + var(--charcoal-face-x));
+    gap: 14px;
+  }
+
+  .cc-eyes-lg span {
+    width: 13px;
+    height: 13px;
+  }
+
+  .cc-eyes-md span {
+    width: 11px;
+    height: 11px;
+  }
+
+  .cc-eyes-lg i {
+    width: 5px;
+    height: 5px;
+  }
+
+  .cc-eyes-md i {
+    width: 4px;
+    height: 4px;
+  }
+
+  .cc-block-coral .cc-dot-eyes {
+    top: calc(52px + var(--coral-face-y));
+    left: calc(54px + var(--coral-face-x));
+    gap: 20px;
+  }
+
+  .cc-block-yellow .cc-dot-eyes {
+    top: calc(26px + var(--yellow-face-y));
+    left: calc(32px + var(--yellow-face-x));
+    gap: 14px;
+  }
+
+  .cc-dot-eyes span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .cc-mouth {
+    top: calc(58px + var(--yellow-face-y));
+    left: calc(26px + var(--yellow-face-x));
+    width: 48px;
+    height: 3px;
+  }
+
+  .cc-auth-page.is-email-focused .cc-block-purple,
+  .cc-auth-page.is-password-hidden .cc-block-purple {
+    height: 250px;
+    transform: skewX(calc(var(--purple-skew) - 8deg)) translateX(22px);
+  }
+
+  .cc-auth-page.is-typing .cc-block-charcoal {
+    transform: skewX(calc(var(--charcoal-skew) + 8deg)) translateX(12px);
   }
 }
 
@@ -1665,8 +1775,113 @@ a:focus-visible,
     min-height: 100dvh;
   }
 
+  .cc-showcase {
+    min-height: 172px;
+    padding: 20px 24px;
+  }
+
+  .cc-showcase::after {
+    background:
+      radial-gradient(circle at 82% 28%, rgba(156, 163, 175, 0.24), transparent 9rem),
+      radial-gradient(circle at 14% 85%, rgba(209, 213, 219, 0.20), transparent 12rem);
+  }
+
+  .cc-brand {
+    font-size: 16px;
+  }
+
+  .cc-brand .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cc-characters {
+    right: -10px;
+    bottom: -14px;
+    width: 286px;
+    height: 142px;
+  }
+
+  .cc-block-purple {
+    left: 52px;
+    width: 74px;
+    height: 144px;
+  }
+
+  .cc-block-charcoal {
+    left: 123px;
+    width: 52px;
+    height: 110px;
+  }
+
+  .cc-block-coral {
+    left: 18px;
+    width: 104px;
+    height: 74px;
+    border-radius: 52px 52px 0 0;
+  }
+
+  .cc-block-yellow {
+    left: 164px;
+    width: 62px;
+    height: 88px;
+    border-radius: 31px 31px 0 0;
+  }
+
+  .cc-eyes-lg {
+    left: calc(18px + var(--purple-face-x));
+    top: calc(18px + var(--purple-face-y));
+    gap: 12px;
+  }
+
+  .cc-eyes-md {
+    top: calc(16px + var(--charcoal-face-y));
+    left: calc(12px + var(--charcoal-face-x));
+    gap: 9px;
+  }
+
+  .cc-eyes-lg span {
+    width: 9px;
+    height: 9px;
+  }
+
+  .cc-eyes-md span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .cc-eyes-lg i,
+  .cc-eyes-md i {
+    width: 3px;
+    height: 3px;
+  }
+
+  .cc-block-coral .cc-dot-eyes {
+    top: calc(33px + var(--coral-face-y));
+    left: calc(36px + var(--coral-face-x));
+    gap: 12px;
+  }
+
+  .cc-block-yellow .cc-dot-eyes {
+    top: calc(18px + var(--yellow-face-y));
+    left: calc(22px + var(--yellow-face-x));
+    gap: 8px;
+  }
+
+  .cc-dot-eyes span {
+    width: 5px;
+    height: 5px;
+  }
+
+  .cc-mouth {
+    top: calc(38px + var(--yellow-face-y));
+    left: calc(18px + var(--yellow-face-x));
+    width: 30px;
+    height: 2px;
+  }
+
   .cc-login-side {
-    padding: 36px 24px 28px;
+    padding: 28px 24px;
   }
 
   .cc-mobile-brand {
