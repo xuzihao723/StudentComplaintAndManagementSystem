@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+export const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api';
+
 const api = axios.create({
-  baseURL: '/api'
+  baseURL: apiBaseUrl
 });
 
 api.interceptors.request.use((config) => {
@@ -179,7 +181,7 @@ export async function addPrivateNote(id, payload) {
 }
 
 export function attachmentDownloadUrl(caseId, attachmentId) {
-  return `/api/cases/${caseId}/attachments/${attachmentId}/download`;
+  return `${apiBaseUrl}/cases/${caseId}/attachments/${attachmentId}/download`;
 }
 
 export async function getOfficerCases() {

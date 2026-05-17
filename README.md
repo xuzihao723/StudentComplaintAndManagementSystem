@@ -122,3 +122,7 @@ The web app listens on `http://localhost:5173`.
 - Evidence files are stored under `uploads/`.
 - When SMTP is not configured, notification records are still created and email status becomes `FAILED`, which keeps the demo workflow usable.
 - This is a complete course-project prototype, not a production deployment guarantee for 1,000 concurrent users.
+
+## Free Cloud Demo Deployment
+
+For a one-month public demo, use Render Free for the frontend/backend and Aiven Free MySQL for the database. See [DEPLOYMENT_RENDER_AIVEN.md](DEPLOYMENT_RENDER_AIVEN.md).
