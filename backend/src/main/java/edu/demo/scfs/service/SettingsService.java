@@ -21,19 +21,31 @@ public class SettingsService {
     private final int fallbackPort;
     private final String fallbackUsername;
     private final String fallbackPassword;
+    private final String emailApiProvider;
+    private final String resendApiKey;
+    private final String resendFromAddress;
+    private final EmailApiClient emailApiClient;
 
     public SettingsService(
             SystemSettingRepository settings,
             @Value("${spring.mail.host:localhost}") String fallbackHost,
             @Value("${spring.mail.port:1025}") int fallbackPort,
             @Value("${spring.mail.username:}") String fallbackUsername,
-            @Value("${spring.mail.password:}") String fallbackPassword
+            @Value("${spring.mail.password:}") String fallbackPassword,
+            @Value("${app.email-api.provider:resend}") String emailApiProvider,
+            @Value("${app.email-api.resend.api-key:}") String resendApiKey,
+            @Value("${app.email-api.resend.from-address:Complaint System <onboarding@resend.dev>}") String resendFromAddress,
+            EmailApiClient emailApiClient
     ) {
         this.settings = settings;
         this.fallbackHost = fallbackHost;
         this.fallbackPort = fallbackPort;
         this.fallbackUsername = fallbackUsername;
         this.fallbackPassword = fallbackPassword;
+        this.emailApiProvider = emailApiProvider;
+        this.resendApiKey = resendApiKey;
+        this.resendFromAddress = resendFromAddress;
+        this.emailApiClient = emailApiClient;
     }
 
     @Transactional(readOnly = true)
@@ -45,8 +57,21 @@ public class SettingsService {
         String password = value("password", fallbackPassword);
         String from = value("fromAddress", username);
         boolean tls = bool("startTls", false);
-        boolean complete = enabled && host != null && !host.isBlank() && port > 0 && from != null && !from.isBlank();
-        return new EmailSettingsResponse(enabled, host, port, username, password != null && !password.isBlank(), from, tls, complete);
+        boolean apiConfigured = apiConfigured();
+        boolean smtpComplete = host != null && !host.isBlank() && port > 0 && from != null && !from.isBlank();
+        boolean complete = enabled && (apiConfigured || smtpComplete);
+        return new EmailSettingsResponse(
+                enabled,
+                host,
+                port,
+                username,
+                password != null && !password.isBlank(),
+                apiConfigured ? resendFromAddress : from,
+                tls,
+                complete,
+                apiConfigured ? "Resend API" : "SMTP",
+                apiConfigured
+        );
     }
 
     @Transactional
@@ -65,7 +90,15 @@ public class SettingsService {
 
     public void sendMail(SimpleMailMessage message) {
         EmailSettingsResponse config = emailSettings();
-        if (!config.enabled() || !config.complete()) {
+        if (!config.enabled()) {
+            throw new IllegalStateException("Email sending is not enabled");
+        }
+        if (config.apiConfigured()) {
+            String to = firstRecipient(message);
+            emailApiClient.send(to, message.getSubject(), message.getText(), config.fromAddress());
+            return;
+        }
+        if (!config.complete()) {
             throw new IllegalStateException("SMTP email is not enabled or incomplete");
         }
         JavaMailSenderImpl sender = sender(config);
@@ -96,6 +129,20 @@ public class SettingsService {
         properties.put("mail.smtp.auth", String.valueOf(config.username() != null && !config.username().isBlank()));
         properties.put("mail.smtp.starttls.enable", String.valueOf(config.startTls()));
         return sender;
+    }
+
+    private boolean apiConfigured() {
+        return "resend".equalsIgnoreCase(emailApiProvider)
+                && resendApiKey != null && !resendApiKey.isBlank()
+                && resendFromAddress != null && !resendFromAddress.isBlank();
+    }
+
+    private String firstRecipient(SimpleMailMessage message) {
+        String[] recipients = message.getTo();
+        if (recipients == null || recipients.length == 0 || recipients[0] == null || recipients[0].isBlank()) {
+            throw new IllegalStateException("Email recipient is missing");
+        }
+        return recipients[0];
     }
 
     private String value(String key, String fallback) {

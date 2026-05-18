@@ -23,6 +23,7 @@ Implemented:
 - Case assignment and department processing
 - Student follow-up review
 - Email notification workflow
+- Resend Email API support for cloud deployments where SMTP ports are blocked
 - Weekly reports
 
 ## Demo Accounts
@@ -121,6 +122,7 @@ The web app listens on `http://localhost:5173`.
 - Staff and admin accounts are created by administrators.
 - Evidence files are stored under `uploads/`.
 - When SMTP is not configured, notification records are still created and email status becomes `FAILED`, which keeps the demo workflow usable.
+- On Render, configure `RESEND_API_KEY` and `RESEND_FROM_ADDRESS` to send email through an HTTPS email API instead of SMTP.
 - This is a complete course-project prototype, not a production deployment guarantee for 1,000 concurrent users.
 
 ## Free Cloud Demo Deployment

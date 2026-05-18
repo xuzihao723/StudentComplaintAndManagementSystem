@@ -15,7 +15,9 @@ public final class SettingsDtos {
             boolean passwordConfigured,
             String fromAddress,
             boolean startTls,
-            boolean complete
+            boolean complete,
+            String provider,
+            boolean apiConfigured
     ) {
     }
 

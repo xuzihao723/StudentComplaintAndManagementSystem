@@ -629,13 +629,20 @@
               <el-tab-pane label="Email Settings" name="email">
                 <section class="settings-grid">
                   <section>
-                    <div class="panel-header"><h2>SMTP configuration</h2><Mail :size="22" /></div>
+                    <div class="panel-header"><h2>Email delivery</h2><Mail :size="22" /></div>
                     <el-alert
                       v-if="!emailSettings.complete"
                       type="warning"
                       :closable="false"
                       show-icon
                       title="Email is not fully configured. In-app notifications still work."
+                    />
+                    <el-alert
+                      v-else-if="emailSettings.apiConfigured"
+                      type="success"
+                      :closable="false"
+                      show-icon
+                      title="Resend Email API is configured by environment variables. SMTP fields are kept as a fallback."
                     />
                     <el-form label-position="top" @submit.prevent>
                       <el-checkbox v-model="emailForm.enabled">Enable email sending</el-checkbox>
@@ -653,6 +660,8 @@
                     <div class="status-list">
                       <span>Enabled: <strong>{{ emailSettings.enabled ? 'Yes' : 'No' }}</strong></span>
                       <span>Complete: <strong>{{ emailSettings.complete ? 'Yes' : 'No' }}</strong></span>
+                      <span>Provider: <strong>{{ emailSettings.provider || 'SMTP' }}</strong></span>
+                      <span>Email API: <strong>{{ emailSettings.apiConfigured ? 'Configured' : 'Not configured' }}</strong></span>
                       <span>Host: <strong>{{ emailSettings.host || 'Not configured' }}</strong></span>
                       <span>Username: <strong>{{ emailSettings.username || 'Not configured' }}</strong></span>
                       <span>Password saved: <strong>{{ emailSettings.passwordConfigured ? 'Yes' : 'No' }}</strong></span>
@@ -1008,7 +1017,7 @@ const statusOptions = ['SUBMITTED', 'UNDER_REVIEW', 'AWAITING_STUDENT_INFO', 'AS
 const settingsTab = ref('departments');
 const profileForm = reactive({ username: '', fullName: '', email: '', role: '', status: '' });
 const passwordForm = reactive({ oldPassword: '', newPassword: '', confirmPassword: '' });
-const emailSettings = reactive({ enabled: false, host: '', port: 1025, username: '', passwordConfigured: false, fromAddress: '', startTls: false, complete: false });
+const emailSettings = reactive({ enabled: false, host: '', port: 1025, username: '', passwordConfigured: false, fromAddress: '', startTls: false, complete: false, provider: 'SMTP', apiConfigured: false });
 const emailForm = reactive({ enabled: false, host: '', port: 1025, username: '', password: '', fromAddress: '', startTls: false });
 const testEmailTo = ref('');
 const testEmailResult = ref(null);

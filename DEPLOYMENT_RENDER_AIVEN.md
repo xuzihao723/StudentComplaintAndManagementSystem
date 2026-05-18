@@ -56,6 +56,16 @@ MAIL_SMTP_AUTH=true
 MAIL_SMTP_STARTTLS=true
 ```
 
+Recommended email API variables for Render:
+
+```text
+RESEND_API_KEY=your-resend-api-key
+RESEND_FROM_ADDRESS=Complaint System <onboarding@resend.dev>
+EMAIL_API_PROVIDER=resend
+```
+
+When `RESEND_API_KEY` is present and email sending is enabled in the admin Settings page, the backend sends through Resend's HTTPS API before falling back to SMTP. This avoids Render SMTP port timeouts.
+
 7. Deploy the backend.
 8. After deployment, copy the backend URL, for example:
 

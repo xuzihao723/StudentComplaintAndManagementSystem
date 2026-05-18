@@ -35,3 +35,9 @@ app:
   upload-dir: ${UPLOAD_DIR:uploads}
   frontend-url: ${FRONTEND_URL:http://localhost:5173}
   cors-allowed-origin-patterns: ${CORS_ALLOWED_ORIGIN_PATTERNS:http://localhost:*,http://127.0.0.1:*}
+  email-api:
+    provider: ${EMAIL_API_PROVIDER:resend}
+    resend:
+      api-key: ${RESEND_API_KEY:}
+      from-address: ${RESEND_FROM_ADDRESS:Complaint System <onboarding@resend.dev>}
+      endpoint: ${RESEND_API_ENDPOINT:https://api.resend.com/emails}
