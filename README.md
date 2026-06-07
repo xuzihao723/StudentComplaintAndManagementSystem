@@ -2,6 +2,14 @@
 
 Full-stack OOAD course-project prototype for managing student complaints and feedback. The system provides structured complaint submission, anonymous tracking, role-based case processing, department resolution, reports, and audit records.
 
+## Live Demo
+
+Open the deployed web application:
+
+<https://student-complaint-frontend.onrender.com/>
+
+This is the main demonstration entry for the project. The repository focuses on the implemented system itself: backend API, frontend application, database workflow, authentication, role-based pages, and the demonstration guide.
+
 ## Project Demonstration
 
 This repository is prepared for the **System Demonstration** requirement of the semester project. The working prototype is a **Website / Web Application** and reflects the analysis and design documented in the project report.
@@ -22,13 +30,10 @@ Recommended 5-minute demo flow:
 
 | Deliverable | Location |
 | --- | --- |
+| Live web application | `https://student-complaint-frontend.onrender.com/` |
 | Project report PDF | `docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf` |
 | Project report LaTeX source | `docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.tex` |
-| Presentation PPTX | `docs/presentation/Student_Complaint_System_Presentation_largefont_6slides.pptx` |
-| Presentation source | `docs/presentation/slides.md` |
 | System demonstration guide | `docs/SYSTEM_DEMONSTRATION.md` |
-| UML / OOAD diagram images | `docs/diagrams/mermaid-output/` |
-| Mermaid diagram source files | `docs/diagrams/mermaid-src/` |
 | Backend prototype | `backend/` |
 | Frontend prototype | `frontend/` |
 
@@ -38,7 +43,6 @@ Recommended 5-minute demo flow:
 - **Backend:** Spring Boot 3, Spring Security, Spring Data JPA
 - **Database:** H2 for quick local demo, MySQL for deployment-like mode
 - **Authentication:** JWT, BCrypt, role-based access control
-- **Documentation:** LaTeX project report, Mermaid diagrams, Slidev presentation
 - **Supporting features:** local file upload, notification records, optional SMTP / Resend email delivery
 
 ## Implemented Scope
@@ -163,18 +167,6 @@ set RESEND_FROM_ADDRESS=no-reply@example.com
 - `GET /api/admin/reports/weekly`
 - `POST /api/admin/reports/weekly/generate`
 
-## Diagram Highlights
-
-Key diagram files for presentation:
-
-- System architecture: `docs/diagrams/mermaid-output/figure1_system_architecture.png`
-- Use-case diagram: `docs/diagrams/mermaid-output/figure2_use_case_diagram.png`
-- UML class diagram: `docs/diagrams/mermaid-output/figure3_uml_class_diagram.png`
-- Activity diagram: `docs/diagrams/mermaid-output/figure4_activity_diagram.png`
-- Sequence diagram: `docs/diagrams/mermaid-output/figure5_sequence_submission.png`
-- ER diagram: `docs/diagrams/mermaid-output/figure6_er_diagram.png`
-- Role-based navigation: `docs/diagrams/mermaid-output/figure7_role_based_navigation.png`
-
 ## Testing
 
 Backend:
@@ -189,13 +181,6 @@ Frontend:
 ```bash
 cd frontend
 npm test
-```
-
-Project documentation / presentation:
-
-```bash
-npm run slides:build
-npm run slides:export:pptx
 ```
 
 ## Notes and Limitations

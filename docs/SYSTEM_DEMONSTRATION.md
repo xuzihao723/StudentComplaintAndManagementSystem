@@ -6,6 +6,16 @@ This repository contains a working web-application prototype for the **Student C
 
 The demo is intended for the **System Demonstration** part of the semester project. It focuses on functionality, completeness, alignment with documented requirements, user interface usability, demonstration quality, and technical effort.
 
+## Live Demo URL
+
+Open the deployed frontend:
+
+```text
+https://student-complaint-frontend.onrender.com/
+```
+
+This URL should be used as the main classroom demonstration entry. The local run instructions below are kept as a backup in case the cloud deployment is slow to wake up or unavailable during presentation.
+
 ## Prototype Form
 
 - **Demo type:** Website / Web Application
@@ -181,12 +191,9 @@ The project demonstrates a full-stack implementation with authentication, role-b
 
 ## Project Deliverables in This Repository
 
+- Live web application: `https://student-complaint-frontend.onrender.com/`
 - Project report PDF: `docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf`
 - Project report LaTeX source: `docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.tex`
-- Presentation PPTX: `docs/presentation/Student_Complaint_System_Presentation_largefont_6slides.pptx`
-- Presentation source: `docs/presentation/slides.md`
-- UML and OOAD diagrams: `docs/diagrams/mermaid-output/`
-- Mermaid diagram source: `docs/diagrams/mermaid-src/`
 - Backend prototype: `backend/`
 - Frontend prototype: `frontend/`
 
