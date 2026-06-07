@@ -1,0 +1,132 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryTextColor": "#111827",
+    "lineColor": "#334155",
+    "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif"
+  },
+  "flowchart": {
+    "htmlLabels": true,
+    "curve": "linear",
+    "nodeSpacing": 18,
+    "rankSpacing": 30,
+    "padding": 10
+  }
+}}%%
+flowchart TB
+  subgraph ACTOR_ROW[" "]
+    direction LR
+    Student["Student"]
+    Anonymous["Anonymous User"]
+    Officer["Student Affairs Officer"]
+    Dept["Department Staff"]
+    Admin["Admin"]
+  end
+
+  subgraph SYS["Student Complaint and Feedback Management System"]
+    direction LR
+    subgraph STUDENT_UC["Student use cases"]
+      direction TB
+      Login(["Login"])
+      Submit(["Submit Complaint / Feedback"])
+      Upload(["Upload Supporting Files"])
+      Track(["Track My Cases"])
+      ProvideInfo(["Provide Additional Information"])
+      FollowUp(["Request Follow-up Review"])
+    end
+
+    subgraph ANON_UC["Anonymous User use cases"]
+      direction TB
+      SubmitAnon(["Submit Anonymous Complaint"])
+      TrackAnon(["Track Anonymous Case"])
+    end
+
+    subgraph OFFICER_UC["Student Affairs Officer use cases"]
+      direction TB
+      Review(["Review Cases"])
+      Classify(["Classify Case"])
+      RequestInfo(["Request Additional Information"])
+      AssignDept(["Assign Department"])
+      CloseCase(["Close Case"])
+      ViewReports(["View Reports"])
+    end
+
+    subgraph DEPT_UC["Department Staff use cases"]
+      direction TB
+      ViewAssigned(["View Assigned Cases"])
+      UpdateProgress(["Update Case Progress"])
+      ProvideResponse(["Provide Response"])
+      MarkResolved(["Mark Case as Resolved"])
+    end
+
+    subgraph ADMIN_UC["Admin use cases"]
+      direction TB
+      ManageUsers(["Manage Users"])
+      ManageDepartments(["Manage Departments"])
+      ManageCategories(["Manage Categories"])
+      ConfigurePermissions(["Configure Permissions"])
+      ManageSettings(["Manage Settings"])
+      MonitorPerformance(["Monitor System Performance"])
+      GenerateReports(["Generate Reports"])
+      ViewAuditLogs(["View Audit Logs"])
+    end
+
+    subgraph INTERNAL_UC["Internal included use cases"]
+      direction TB
+      Validate(["Validate Required Fields"])
+      GenCase(["Generate Case Number"])
+      GenTracking(["Generate Tracking Code"])
+    end
+  end
+
+  Student --- Login
+  Student --- Submit
+  Student --- Track
+  Student --- ProvideInfo
+  Student --- FollowUp
+
+  Anonymous --- SubmitAnon
+  Anonymous --- TrackAnon
+
+  Officer --- Review
+  Officer --- RequestInfo
+  Officer --- AssignDept
+  Officer --- CloseCase
+  Officer --- ViewReports
+
+  Dept --- ViewAssigned
+  Dept --- UpdateProgress
+  Dept --- ProvideResponse
+  Dept --- MarkResolved
+
+  Admin --- ManageUsers
+  Admin --- ManageDepartments
+  Admin --- ManageCategories
+  Admin --- ConfigurePermissions
+  Admin --- ManageSettings
+  Admin --- MonitorPerformance
+  Admin --- GenerateReports
+  Admin --- ViewAuditLogs
+
+  Submit -. "<<include>>" .-> Validate
+  Submit -. "<<include>>" .-> GenCase
+  Upload -. "<<extend>>" .-> Submit
+  SubmitAnon -. "<<include>>" .-> GenTracking
+  Review -. "<<include>>" .-> Classify
+
+  classDef actor fill:#f8fafc,stroke:#64748b,color:#111827,stroke-width:1.4px;
+  classDef usecase fill:#ffffff,stroke:#93c5fd,color:#111827,stroke-width:1.3px;
+  classDef internal fill:#fff7ed,stroke:#fdba74,color:#111827,stroke-width:1.3px;
+  class Student,Anonymous,Officer,Dept,Admin actor;
+  class Login,Submit,Upload,Track,ProvideInfo,FollowUp,SubmitAnon,TrackAnon,Review,Classify,RequestInfo,AssignDept,CloseCase,ViewReports,ViewAssigned,UpdateProgress,ProvideResponse,MarkResolved,ManageUsers,ManageDepartments,ManageCategories,ConfigurePermissions,ManageSettings,MonitorPerformance,GenerateReports,ViewAuditLogs usecase;
+  class Validate,GenCase,GenTracking internal;
+
+  style ACTOR_ROW fill:#ffffff,stroke:#ffffff
+  style SYS fill:#ffffff,stroke:#94a3b8,stroke-width:1.6px,stroke-dasharray:7 5
+  style STUDENT_UC fill:#eff6ff,stroke:#bfdbfe,stroke-dasharray:6 5
+  style ANON_UC fill:#f8fafc,stroke:#cbd5e1,stroke-dasharray:6 5
+  style OFFICER_UC fill:#f0fdfa,stroke:#99f6e4,stroke-dasharray:6 5
+  style DEPT_UC fill:#f0fdf4,stroke:#86efac,stroke-dasharray:6 5
+  style ADMIN_UC fill:#faf5ff,stroke:#d8b4fe,stroke-dasharray:6 5
+  style INTERNAL_UC fill:#fff7ed,stroke:#fed7aa,stroke-dasharray:4 4

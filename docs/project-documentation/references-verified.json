@@ -1,0 +1,82 @@
+[
+  {
+    "key": "OMG2017UML",
+    "title": "Unified Modeling Language 2.5.1",
+    "authors": "Object Management Group",
+    "year": 2017,
+    "source": "OMG specification page",
+    "doi_or_url": "https://www.omg.org/spec/UML/2.5.1",
+    "relevance_note": "Primary source for UML notation used in the use-case, class, activity and sequence diagrams.",
+    "status": "verified via official OMG specification page"
+  },
+  {
+    "key": "ISO29148",
+    "title": "ISO/IEC/IEEE 29148:2018 Systems and software engineering: Life cycle processes: Requirements engineering",
+    "authors": "ISO/IEC/IEEE",
+    "year": 2018,
+    "source": "ISO and IEEE standards pages",
+    "doi_or_url": "https://www.iso.org/standard/72089.html",
+    "relevance_note": "Used to frame requirements analysis and requirement validation.",
+    "status": "verified via official ISO page"
+  },
+  {
+    "key": "AgileManifesto",
+    "title": "Manifesto for Agile Software Development",
+    "authors": "Beck K. et al.",
+    "year": 2001,
+    "source": "Official Agile Manifesto website",
+    "doi_or_url": "https://agilemanifesto.org/",
+    "relevance_note": "Used to justify the iterative and incremental development approach adopted for the course prototype.",
+    "status": "verified via official website"
+  },
+  {
+    "key": "Chen1976ER",
+    "title": "The Entity-Relationship Model: Toward a Unified View of Data",
+    "authors": "Chen, P. P.",
+    "year": 1976,
+    "source": "ACM Transactions on Database Systems",
+    "doi_or_url": "https://doi.org/10.1145/320434.320440",
+    "relevance_note": "Foundational reference for ER modeling used in the database design section.",
+    "status": "verified via bibliographic search"
+  },
+  {
+    "key": "Codd1970Relational",
+    "title": "A Relational Model of Data for Large Shared Data Banks",
+    "authors": "Codd, E. F.",
+    "year": 1970,
+    "source": "Communications of the ACM",
+    "doi_or_url": "https://doi.org/10.1145/362384.362685",
+    "relevance_note": "Foundational reference for relational database modeling.",
+    "status": "verified via ACM DOI metadata in search results"
+  },
+  {
+    "key": "NIST1989VV",
+    "title": "Software Verification and Validation",
+    "authors": "NIST",
+    "year": 1989,
+    "source": "NIST Special Publication 500-165",
+    "doi_or_url": "https://doi.org/10.6028/NIST.SP.500-165",
+    "relevance_note": "Used to frame functional verification and validation discussion.",
+    "status": "verified via NIST publication page"
+  },
+  {
+    "key": "Wilkinson2016FAIR",
+    "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+    "authors": "Wilkinson, M. D. et al.",
+    "year": 2016,
+    "source": "Scientific Data",
+    "doi_or_url": "https://doi.org/10.1038/sdata.2016.18",
+    "relevance_note": "Used to frame transparent availability of project artifacts and supporting data.",
+    "status": "verified via Nature Scientific Data page"
+  },
+  {
+    "key": "SpringerNatureDataPolicy",
+    "title": "Research data policy",
+    "authors": "Springer Nature",
+    "year": 2026,
+    "source": "Springer Nature author policy page",
+    "doi_or_url": "https://www.springernature.com/gp/authors/research-data-policy",
+    "relevance_note": "Used only as a reporting-style guide for the Data and Source Artifacts Availability statement.",
+    "status": "verified via current Springer Nature policy page"
+  }
+]

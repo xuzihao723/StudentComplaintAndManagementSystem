@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.8in]{geometry}
+\usepackage{xcolor}
+
+\definecolor{headingblue}{RGB}{31,78,121}
+
+\pagestyle{empty}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parskip}{8pt}
+\setlength{\parindent}{0pt}
+
+\newcommand{\scfssection}[1]{%
+  \vspace{8pt}%
+  {\large\bfseries\color{headingblue} #1}\par
+  \vspace{2pt}
+}
+
+\begin{document}
+
+\scfssection{Project Title}
+\textbf{Student Complaint and Feedback Management System}
+
+\scfssection{Project Scope Statement}
+This project aims to design and develop a web-based Student Complaint and Feedback Management System using Object-Oriented Analysis and Design (OOAD) principles. The system provides a structured platform for students to submit complaints and feedback, while allowing student affairs officers, department staff, and administrators to review, assign, process, track, and manage cases efficiently.
+
+The main functions include student registration and login, complaint submission, anonymous submission, case tracking, role-based access control, case assignment, department handling, notifications, overdue case monitoring, user management, category and department configuration, audit logs, and basic reports. Students can submit cases with descriptions, categories, priorities, and attachments. Officers can review new cases, request additional information, assign cases, and close cases. Department staff can update progress and resolve assigned cases. Administrators can manage users, settings, reports, and system configurations.
+
+The project will apply OOAD techniques such as requirement analysis, use case modeling, class modeling, sequence modeling, database design, interface design, and prototype development. The prototype will be developed using Vue, Spring Boot, and MySQL. Since the project is not connected to an official university system, school single sign-on will not be implemented. Instead, students can self-register, while staff accounts are created by administrators.
+
+Because this is a course prototype using free-tier deployment services, production-level non-functional requirements such as supporting 1,000 concurrent users, guaranteeing 99.5\% monthly availability, durable file storage, and unrestricted email delivery are treated as future goals rather than current guarantees.
+
+\end{document}

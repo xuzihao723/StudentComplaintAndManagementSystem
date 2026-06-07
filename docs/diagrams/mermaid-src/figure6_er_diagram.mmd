@@ -1,0 +1,68 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryTextColor": "#111827",
+    "lineColor": "#334155",
+    "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif"
+  },
+  "flowchart": {
+    "htmlLabels": true,
+    "curve": "linear",
+    "nodeSpacing": 18,
+    "rankSpacing": 26,
+    "padding": 8
+  }
+}}%%
+flowchart LR
+  subgraph LEFT["Reference and User Data"]
+    direction TB
+    users["<b>users</b><br/>PK id<br/>username<br/>email<br/>password_hash<br/>role<br/>status<br/>FK department_id nullable"]
+    departments["<b>departments</b><br/>PK id<br/>name<br/>enabled"]
+    categories["<b>categories</b><br/>PK id<br/>name<br/>anonymous_allowed<br/>default_sla_hours"]
+    system_settings["<b>system_settings</b><br/>PK id<br/>setting_key<br/>setting_value<br/>global configuration<br/>managed by Admin"]
+  end
+
+  cases["<b>cases</b><br/>PK id<br/>case_number<br/>FK submitted_by_id nullable<br/>FK category_id<br/>FK assigned_department_id nullable<br/>title<br/>description<br/>status<br/>priority<br/>is_anonymous<br/>tracking_code_hash nullable<br/>submitted_at<br/>due_at<br/>resolved_at<br/>closed_at"]
+
+  subgraph WORKFLOW["Case-Owned Workflow Records"]
+    direction TB
+    case_attachments["<b>case_attachments</b><br/>PK id<br/>FK case_id<br/>FK uploaded_by_id nullable<br/>file_name<br/>stored_path<br/>content_type<br/>uploaded_at"]
+    case_messages["<b>case_messages</b><br/>PK id<br/>FK case_id<br/>FK sender_id nullable<br/>content<br/>is_internal<br/>created_at"]
+    case_status_logs["<b>case_status_logs</b><br/>PK id<br/>FK case_id<br/>FK changed_by_id nullable<br/>old_status<br/>new_status<br/>changed_at<br/>note"]
+    case_assignments["<b>case_assignments</b><br/>PK id<br/>FK case_id<br/>FK department_id<br/>FK assigned_by_id<br/>assignment_role<br/>assigned_at"]
+  end
+
+  subgraph SUPPORT["Supporting Records"]
+    direction TB
+    case_private_notes["<b>case_private_notes</b><br/>PK id<br/>FK case_id<br/>FK staff_id<br/>note<br/>created_at"]
+    notifications["<b>notifications</b><br/>PK id<br/>FK case_id nullable<br/>FK recipient_user_id nullable<br/>type<br/>channel<br/>content<br/>read_at nullable<br/>created_at"]
+    audit_logs["<b>audit_logs</b><br/>PK id<br/>FK actor_user_id nullable<br/>action<br/>entity_type<br/>entity_id<br/>created_at"]
+    weekly_reports["<b>weekly_reports</b><br/>PK id<br/>report_week<br/>FK generated_by_id<br/>generated_at<br/>summary_path nullable"]
+  end
+
+  note["<b>Additional User FK Cardinalities</b><br/>users 1:N uploaded files<br/>users 1:N messages<br/>users 1:N status changes<br/>users 1:N assignments<br/>users 1:N private notes<br/>users 1:N notifications<br/>users 1:N audit logs<br/>users 1:N weekly reports"]
+
+  departments -- "1:N users" --> users
+  users -- "1:N cases<br/>submitted_by_id nullable" --> cases
+  departments -- "1:N cases<br/>assigned_department_id" --> cases
+  categories -- "1:N cases" --> cases
+  cases -- "1:N attachments" --> case_attachments
+  cases -- "1:N messages" --> case_messages
+  cases -- "1:N status logs" --> case_status_logs
+  cases -- "1:N assignments" --> case_assignments
+  departments -- "1:N assignments" --> case_assignments
+  cases -- "1:N private notes" --> case_private_notes
+  cases -- "1:N notifications" --> notifications
+  users -. "listed user FKs" .-> note
+  system_settings ~~~ note
+
+  classDef table fill:#fff7ed,stroke:#fdba74,color:#111827,stroke-width:1.2px;
+  classDef central fill:#ffffff,stroke:#2563eb,color:#111827,stroke-width:1.6px;
+  classDef note fill:#f8fafc,stroke:#94a3b8,color:#111827,stroke-width:1.2px;
+  class users,departments,categories,system_settings,case_attachments,case_messages,case_status_logs,case_assignments,case_private_notes,notifications,audit_logs,weekly_reports table;
+  class cases central;
+  class note note;
+  style LEFT fill:#eff6ff,stroke:#bfdbfe,stroke-dasharray:6 5
+  style WORKFLOW fill:#f0fdfa,stroke:#99f6e4,stroke-dasharray:6 5
+  style SUPPORT fill:#faf5ff,stroke:#d8b4fe,stroke-dasharray:6 5

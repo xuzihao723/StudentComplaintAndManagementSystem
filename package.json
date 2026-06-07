@@ -1,0 +1,17 @@
+{
+  "name": "student-complaint-and-feedback-sys-docs",
+  "private": true,
+  "scripts": {
+    "diagram:mermaid": "mmdc -i docs/diagrams/mermaid-src/class_diagram.mmd -o docs/diagrams/mermaid-output/class_diagram.svg",
+    "slides:dev": "slidev docs/presentation/slides.md --port 3030",
+    "slides:build": "slidev build docs/presentation/slides.md --out slidev-content",
+    "slides:export": "slidev export docs/presentation/slides.md --output docs/presentation/Student_Complaint_System_Presentation.pdf",
+    "slides:export:pptx": "slidev export docs/presentation/slides.md --format pptx --output docs/presentation/Student_Complaint_System_Presentation.pptx --wait-until networkidle --wait 1000"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.15.0",
+    "@slidev/cli": "^52.16.0",
+    "playwright-chromium": "^1.60.0",
+    "slidev-theme-touying": "^0.1.10"
+  }
+}

@@ -1,0 +1,64 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryTextColor": "#111827",
+    "sequenceNumberColor": "#64748b",
+    "actorBkg": "#ffffff",
+    "actorBorder": "#94a3b8",
+    "activationBkgColor": "#dbeafe",
+    "activationBorderColor": "#60a5fa",
+    "noteBkgColor": "#fff7ed",
+    "noteTextColor": "#111827",
+    "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif"
+  },
+  "sequence": {
+    "showSequenceNumbers": false,
+    "mirrorActors": false,
+    "actorMargin": 44,
+    "width": 124,
+    "messageMargin": 30
+  }
+}}%%
+sequenceDiagram
+  participant U as Student / Anonymous User
+  participant V as Vue Frontend
+  participant A as Auth API / Spring Security
+  participant C as CaseController
+  participant S as CaseService
+  participant F as FileStorage
+  participant D as Database
+  participant N as NotificationService
+
+  U->>V: case details + files
+
+  alt authenticated student
+    V->>A: validate JWT
+    A-->>V: JWT valid
+  else anonymous user
+    Note over V: skip JWT validation
+  end
+
+  V->>C: POST /cases
+  C->>S: createCase(request)
+
+  alt valid request
+    S->>S: validate required fields
+    S->>S: check anonymous policy
+    S->>S: generate tracking code and store hash if anonymous
+    S->>F: save attachments
+    F-->>S: stored paths
+    S->>D: save case + attachments + status log
+    D-->>S: case id + case number
+    S->>N: send notification
+    N-->>S: sent / queued
+    S->>C: case number + tracking code if anonymous
+    C-->>V: response
+    V-->>U: display result
+  else invalid request
+    S-->>C: validation error
+    C-->>V: error response
+    V-->>U: display validation error
+  end
+
+  Note over U,N: Anonymous submissions skip JWT validation, tracking code is displayed once

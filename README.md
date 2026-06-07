@@ -1,30 +1,63 @@
 # Student Complaint and Feedback Management System
 
-Full-stack course project based on the SRS: Spring Boot 3 backend, Vue 3 frontend, MySQL database, local file uploads, role-based access control, case workflow, weekly reports, and SMTP email notifications.
+Full-stack OOAD course-project prototype for managing student complaints and feedback. The system provides structured complaint submission, anonymous tracking, role-based case processing, department resolution, reports, and audit records.
 
-## Current Scope
+## Project Demonstration
 
-Implemented:
+This repository is prepared for the **System Demonstration** requirement of the semester project. The working prototype is a **Website / Web Application** and reflects the analysis and design documented in the project report.
 
-- Spring Boot project structure
-- Vue 3 project structure
-- MySQL Docker configuration
-- Local database accounts
-- Student self-registration
-- JWT login
+Detailed demonstration guide:
+
+- [System Demonstration Guide](docs/SYSTEM_DEMONSTRATION.md)
+
+Recommended 5-minute demo flow:
+
+1. Student submits a complaint.
+2. Anonymous user submits and tracks a complaint.
+3. Student Affairs Officer assigns the case.
+4. Department Staff updates progress and marks resolution.
+5. Admin pages are briefly shown for management, reports, settings, and audit logs.
+
+## Deliverables
+
+| Deliverable | Location |
+| --- | --- |
+| Project report PDF | `docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf` |
+| Project report LaTeX source | `docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.tex` |
+| Presentation PPTX | `docs/presentation/Student_Complaint_System_Presentation_largefont_6slides.pptx` |
+| Presentation source | `docs/presentation/slides.md` |
+| System demonstration guide | `docs/SYSTEM_DEMONSTRATION.md` |
+| UML / OOAD diagram images | `docs/diagrams/mermaid-output/` |
+| Mermaid diagram source files | `docs/diagrams/mermaid-src/` |
+| Backend prototype | `backend/` |
+| Frontend prototype | `frontend/` |
+
+## Technology Stack
+
+- **Frontend:** Vue 3, Element Plus, Vite
+- **Backend:** Spring Boot 3, Spring Security, Spring Data JPA
+- **Database:** H2 for quick local demo, MySQL for deployment-like mode
+- **Authentication:** JWT, BCrypt, role-based access control
+- **Documentation:** LaTeX project report, Mermaid diagrams, Slidev presentation
+- **Supporting features:** local file upload, notification records, optional SMTP / Resend email delivery
+
+## Implemented Scope
+
+- Student self-registration and login
+- JWT authentication
 - BCrypt password storage
-- Four roles: `STUDENT`, `OFFICER`, `DEPARTMENT_STAFF`, `ADMIN`
-- Admin staff account management
-- Seeded departments and complaint categories
+- Role-based access control
+- Roles: `STUDENT`, `OFFICER`, `DEPARTMENT_STAFF`, `ADMIN`
 - Role-based frontend dashboards
 - Complaint and feedback submission
-- Anonymous category policy
+- Anonymous complaint policy and tracking-code workflow
 - File evidence upload to local storage
-- Case assignment and department processing
+- Case review, assignment, department progress update, resolution, and closure
 - Student follow-up review
-- Email notification workflow
-- Resend Email API support for cloud deployments where SMTP ports are blocked
+- Notification workflow
 - Weekly reports
+- Admin user, department, category, settings, and audit-log management
+- H2 local demo profile and MySQL deployment mode
 
 ## Demo Accounts
 
@@ -38,24 +71,60 @@ The backend seeds these accounts on first run:
 | Department Staff | `academic_staff` | `Staff123!` |
 | Student | `student1` | `Student123!` |
 
-## Run MySQL
+## Quick Start: H2 Local Demo
 
-```bash
-docker compose up -d mysql
-```
+Use this mode for the fastest classroom demonstration.
 
-## Run Backend
-
-For quick local demo without MySQL, use the H2 dev profile:
+### 1. Run Backend
 
 ```bash
 cd backend
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-The H2 database is stored under `backend/data/`, and the H2 console is available at `http://localhost:8080/h2-console`.
+Backend API:
 
-For MySQL mode, start MySQL first and run without the dev profile. SMTP variables can be set when real email sending is required:
+```text
+http://localhost:8080
+```
+
+H2 console:
+
+```text
+http://localhost:8080/h2-console
+```
+
+### 2. Run Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend application:
+
+```text
+http://localhost:5173
+```
+
+## MySQL Mode
+
+For a deployment-like local run:
+
+```bash
+docker compose up -d mysql
+cd backend
+mvn spring-boot:run
+```
+
+The API listens on:
+
+```text
+http://localhost:8080
+```
+
+Optional email variables:
 
 ```bash
 set MAIL_HOST=smtp.example.com
@@ -64,67 +133,80 @@ set MAIL_USERNAME=your@email.com
 set MAIL_PASSWORD=your-password
 ```
 
-Then run:
+Resend API variables can also be configured for HTTPS-based email delivery:
 
 ```bash
-cd backend
-mvn spring-boot:run
+set RESEND_API_KEY=your-resend-key
+set RESEND_FROM_ADDRESS=no-reply@example.com
 ```
 
-The API listens on `http://localhost:8080`.
-
-## Run Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The web app listens on `http://localhost:5173`.
-
-## API Summary
+## Main API Areas
 
 - `POST /api/auth/register/student`
 - `POST /api/auth/login`
 - `GET /api/auth/me`
 - `GET /api/reference/departments`
 - `GET /api/reference/categories`
-- `GET /api/notifications`
 - `POST /api/student/cases`
 - `GET /api/student/cases`
-- `GET /api/student/cases/{id}`
 - `POST /api/student/cases/{id}/messages`
 - `POST /api/student/cases/{id}/follow-up`
 - `GET /api/officer/cases/new`
-- `GET /api/officer/cases/{id}`
 - `POST /api/officer/cases/{id}/assign`
 - `POST /api/officer/cases/{id}/request-info`
 - `POST /api/officer/cases/{id}/close`
 - `GET /api/department/cases`
-- `GET /api/department/cases/{id}`
 - `POST /api/department/cases/{id}/progress`
 - `POST /api/department/cases/{id}/resolve`
 - `GET /api/admin/users`
 - `POST /api/admin/users`
-- `PUT /api/admin/users/{id}`
-- `DELETE /api/admin/users/{id}`
-- `POST /api/admin/reference/departments`
-- `PUT /api/admin/reference/departments/{id}`
-- `POST /api/admin/reference/categories`
-- `PUT /api/admin/reference/categories/{id}`
 - `GET /api/admin/reports/weekly`
 - `POST /api/admin/reports/weekly/generate`
 
-## Notes
+## Diagram Highlights
 
-- Student self-registration is implemented with local database accounts because university SSO is unavailable.
-- Staff and admin accounts are created by administrators.
-- Evidence files are stored under `uploads/`.
-- When SMTP is not configured, notification records are still created and email status becomes `FAILED`, which keeps the demo workflow usable.
-- On Render, configure `RESEND_API_KEY` and `RESEND_FROM_ADDRESS` to send email through an HTTPS email API instead of SMTP.
-- This is a complete course-project prototype, not a production deployment guarantee for 1,000 concurrent users.
+Key diagram files for presentation:
+
+- System architecture: `docs/diagrams/mermaid-output/figure1_system_architecture.png`
+- Use-case diagram: `docs/diagrams/mermaid-output/figure2_use_case_diagram.png`
+- UML class diagram: `docs/diagrams/mermaid-output/figure3_uml_class_diagram.png`
+- Activity diagram: `docs/diagrams/mermaid-output/figure4_activity_diagram.png`
+- Sequence diagram: `docs/diagrams/mermaid-output/figure5_sequence_submission.png`
+- ER diagram: `docs/diagrams/mermaid-output/figure6_er_diagram.png`
+- Role-based navigation: `docs/diagrams/mermaid-output/figure7_role_based_navigation.png`
+
+## Testing
+
+Backend:
+
+```bash
+cd backend
+mvn test
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm test
+```
+
+Project documentation / presentation:
+
+```bash
+npm run slides:build
+npm run slides:export:pptx
+```
+
+## Notes and Limitations
+
+- This is a complete course-project prototype, not a production deployment guarantee.
+- H2 mode is recommended for quick local demonstration.
+- MySQL mode is available through Docker Compose.
+- University SSO is planned as a future integration. The prototype uses local accounts for demonstration.
+- Evidence files are stored locally under `uploads/`.
+- If SMTP or Resend is not configured, notification records are still created so the workflow remains demonstrable.
 
 ## Free Cloud Demo Deployment
 
-For a one-month public demo, use Render Free for the frontend/backend and Aiven Free MySQL for the database. See [DEPLOYMENT_RENDER_AIVEN.md](DEPLOYMENT_RENDER_AIVEN.md).
+For a one-month public demo, use Render Free for frontend/backend and Aiven Free MySQL for the database. See [DEPLOYMENT_RENDER_AIVEN.md](DEPLOYMENT_RENDER_AIVEN.md).
