@@ -17,7 +17,7 @@
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 \hypersetup{colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue}
-\graphicspath{{../diagrams/mermaid-output/}}
+\graphicspath{{figures/}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
 \sloppy
@@ -108,14 +108,14 @@ The main aim is to design and implement a course-project prototype that demonstr
 \section{Methodology and Analysis Approach}
 
 \subsection{Adopted methodology and rationale}
-The project adopted an iterative and incremental development approach. This choice was appropriate because the system combines several interacting workflows: authentication, complaint submission, anonymous tracking, officer review, department processing, notifications, reporting and administration. An iterative approach allowed the team to model the main workflow first, implement a working vertical slice, then refine role-specific behavior and edge cases. The approach is consistent with the Agile emphasis on working software, feedback and adaptation \cite{AgileManifesto}.
+The project adopted an iterative and incremental development approach. This choice was appropriate because the system combines several interacting workflows: authentication, complaint submission, anonymous tracking, officer review, department processing, notifications, reporting and administration. An iterative approach allowed the team to model the main workflow first, implement a working vertical slice, then refine role-specific behavior and edge cases. The approach is consistent with modern iterative delivery guidance that emphasizes transparency, inspection, adaptation and working increments \cite{ScrumGuide2020}.
 
 For analysis and design, the project used OOAD. The domain was decomposed into actors, use cases, domain classes, workflow states, sequence interactions and persistent entities. The requirements section was structured with reference to requirements engineering practice, where requirements should be identifiable, verifiable and connected to system functions \cite{ISO29148}.
 
 \subsection{Application during analysis and design}
 The analysis started from stakeholder roles and major complaint scenarios. Each scenario was converted into use cases and then mapped to objects. For example, "submit complaint" maps to \texttt{ComplaintCase}, \texttt{Category}, \texttt{CaseAttachment}, \texttt{CaseStatusLog} and \texttt{Notification}. Officer assignment maps to \texttt{Department}, \texttt{CaseAssignment} and status changes. Anonymous tracking maps to \texttt{trackingCodeHash} and public lookup functions.
 
-The same design logic was then reflected in the implementation. The backend uses Spring Boot controllers, services, repositories and JPA domain entities. The frontend uses Vue pages, role-based navigation and API calls. The database schema follows a relational model, which separates persistent data into tables and relationships \cite{Codd1970Relational}.
+The same design logic was then reflected in the implementation. The backend uses Spring Boot controllers, services, repositories and JPA domain entities. The frontend uses Vue pages, role-based navigation and API calls. The database schema follows modern relational database design practice, separating persistent data into tables, keys and relationships \cite{DatabaseConcepts2019}.
 
 \subsection{Major development phases}
 \begin{table}[H]
@@ -251,7 +251,7 @@ The diagram demonstrates interaction design and responsibility allocation. Contr
 \end{figure}
 
 \subsection{Entity relationship model}
-The ER diagram in \figref{fig:er} shows the relational data model. It is based on entity-relationship modeling, originally introduced to represent entities and relationships at the conceptual data level \cite{Chen1976ER}. The central \texttt{cases} table links to users, departments, categories and workflow child tables. Supporting tables store private notes, notifications, audit logs, weekly reports and settings.
+The ER diagram in \figref{fig:er} shows the relational data model. It uses standard conceptual database-design concepts for entities, attributes, keys and relationships \cite{Elmasri2016Database}. The central \texttt{cases} table links to users, departments, categories and workflow child tables. Supporting tables store private notes, notifications, audit logs, weekly reports and settings.
 
 The design separates reference data from workflow data. \texttt{departments} and \texttt{categories} are configurable reference tables. \texttt{case\_status\_logs}, \texttt{case\_messages} and \texttt{case\_assignments} preserve traceability. This structure supports both operational workflow and later reporting.
 
@@ -296,7 +296,7 @@ Frontend & \texttt{npm test} & 20/20 passed & Vitest tests validated role-specif
 \subsection{User testing and validation of requirements}
 User testing was performed as scenario-based validation rather than large-scale production testing. The main scenarios were: student registration and login, authenticated case submission, anonymous submission, officer review, information request, department assignment, department progress update, resolution, follow-up review, admin configuration and report inspection. These scenarios validate the functional requirements in Section 3.
 
-The testing approach follows the general purpose of verification and validation: checking that the implemented system conforms to specified requirements and supports intended use \cite{NIST1989VV}. The prototype met the core course-project requirements, but additional formal user acceptance testing would be required before real university deployment.
+The testing approach follows the general purpose of software testing: checking that the implemented system satisfies specified requirements, reveals defects and supports intended use \cite{ISO29119Testing}. The prototype met the core course-project requirements, but additional formal user acceptance testing would be required before real university deployment.
 
 \subsection{Performance observations}
 The prototype is suitable for local demonstration and small course-project workflows. H2 supports quick local testing, while MySQL is available for deployment. The current system should not be presented as a production system for thousands of concurrent users because the free deployment plan, local file storage and external email limitations are not designed for that scale.
@@ -336,7 +336,7 @@ Prototype deployment pathway & Partially achieved for prototype deployment only 
 \end{table}
 
 \subsection{Data and source artifacts availability}
-Following the transparency logic of modern data-availability statements and FAIR principles \cite{Wilkinson2016FAIR,SpringerNatureDataPolicy}, all report artifacts used for this documentation are stored in the project workspace. The generated diagrams are available as SVG and PNG files under \texttt{docs/diagrams/mermaid-output}. The LaTeX source, PDF output and reference verification list are stored under \texttt{docs/project-documentation}. No real student complaint data are included in this report. Any demonstration accounts or seeded records are synthetic and intended only for testing and presentation.
+Following the transparency logic of modern data-availability statements and FAIR principles \cite{Wilkinson2016FAIR,SpringerNatureDataPolicy}, the report, source code and demonstration materials are maintained in the project repository at \url{https://github.com/xuzihao723/StudentComplaintAndManagementSystem}. The report figures are included directly in this PDF, and the LaTeX source, PDF output and reference verification list are stored with the project documentation files. No real student complaint data are included in this report. Any demonstration accounts or seeded records are synthetic and intended only for testing and presentation.
 
 \subsection{Future improvements}
 Future work should include university SSO integration, object storage for attachments, verified email domain configuration, stronger anonymous-reporting safeguards, automated escalation rules, advanced workflow configuration, richer analytics, backup and recovery scripts, monitoring, accessibility audit and formal user acceptance testing with actual student-service staff.
@@ -351,17 +351,17 @@ Object Management Group. Unified Modeling Language 2.5.1. OMG Specification, 201
 \bibitem{ISO29148}
 ISO/IEC/IEEE. ISO/IEC/IEEE 29148:2018, Systems and software engineering: Life cycle processes: Requirements engineering. 2018. Available at: \url{https://www.iso.org/standard/72089.html}.
 
-\bibitem{AgileManifesto}
-Beck, K. et al. Manifesto for Agile Software Development. 2001. Available at: \url{https://agilemanifesto.org/}.
+\bibitem{ScrumGuide2020}
+Schwaber, K. and Sutherland, J. The Scrum Guide: The Definitive Guide to Scrum. 2020. Available at: \url{https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf}.
 
-\bibitem{Chen1976ER}
-Chen, P. P. The Entity-Relationship Model: Toward a Unified View of Data. \textit{ACM Transactions on Database Systems} \textbf{1}, 9--36 (1976). \url{https://doi.org/10.1145/320434.320440}.
+\bibitem{Elmasri2016Database}
+Elmasri, R. and Navathe, S. B. \textit{Fundamentals of Database Systems}, 7th edn. Pearson, 2016. Available at: \url{https://www.pearson.com/en-gb/subject-catalog/p/fundamentals-of-database-systems-global-edition/P200000004142/9781292097626}.
 
-\bibitem{Codd1970Relational}
-Codd, E. F. A relational model of data for large shared data banks. \textit{Communications of the ACM} \textbf{13}, 377--387 (1970). \url{https://doi.org/10.1145/362384.362685}.
+\bibitem{DatabaseConcepts2019}
+Silberschatz, A., Korth, H. F. and Sudarshan, S. \textit{Database System Concepts}, 7th edn. McGraw-Hill, 2019. Available at: \url{https://codex.cs.yale.edu/avi/db-book/}.
 
-\bibitem{NIST1989VV}
-National Institute of Standards and Technology. Software Verification and Validation. NIST Special Publication 500-165 (1989). \url{https://doi.org/10.6028/NIST.SP.500-165}.
+\bibitem{ISO29119Testing}
+ISO/IEC/IEEE. ISO/IEC/IEEE 29119-1:2022, Software and systems engineering: Software testing: Part 1: General concepts. 2022. Available at: \url{https://www.iso.org/standard/81291.html}.
 
 \bibitem{Wilkinson2016FAIR}
 Wilkinson, M. D. et al. The FAIR Guiding Principles for scientific data management and stewardship. \textit{Scientific Data} \textbf{3}, 160018 (2016). \url{https://doi.org/10.1038/sdata.2016.18}.
