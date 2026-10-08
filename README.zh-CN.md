@@ -391,11 +391,6 @@ mvn -f backend/pom.xml package
 
 维护者：[xuzihao723](https://github.com/xuzihao723) · 项目仓库：[StudentComplaintAndManagementSystem](https://github.com/xuzihao723/StudentComplaintAndManagementSystem)
 
-README 的组织与展示方式参考：
-
-- [Awesome README](https://github.com/matiassingers/awesome-readme)：清晰简介、技术标识、目录导航与可视化文档。
-- [Best README Template](https://github.com/othneildrew/Best-README-Template)：项目介绍、安装使用、贡献、许可证与致谢的分区结构。
-
 感谢 Vue、Element Plus、Spring Boot 等开源项目。
 
 [返回顶部](#readme-top)
