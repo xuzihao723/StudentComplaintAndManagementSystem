@@ -1,12 +1,12 @@
-# 学生投诉与反馈管理系统
+# Student Complaint and Feedback Management System
 
 <a id="readme-top"></a>
 
 <div align="center">
 
-Student Complaint and Feedback Management System
+English | [简体中文](README.zh-CN.md)
 
-面向校园投诉与反馈处理的全栈 Web 应用 · OOAD 课程项目
+A full-stack web application for campus complaints and feedback · OOAD course project
 
 ![Java](https://img.shields.io/badge/Java-17-ED8B00?style=flat-square)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3.5-6DB33F?style=flat-square&logo=springboot&logoColor=white)
@@ -14,136 +14,136 @@ Student Complaint and Feedback Management System
 ![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat-square&logo=vite&logoColor=white)
 [![Stars](https://img.shields.io/github/stars/xuzihao723/StudentComplaintAndManagementSystem?style=flat-square)](https://github.com/xuzihao723/StudentComplaintAndManagementSystem/stargazers)
 
-[在线演示](https://student-complaint-frontend.onrender.com/) · [演示指南](docs/SYSTEM_DEMONSTRATION.md) · [项目报告](docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf) · [反馈问题](https://github.com/xuzihao723/StudentComplaintAndManagementSystem/issues)
+[Live Demo](https://student-complaint-frontend.onrender.com/) · [Demo Guide](docs/SYSTEM_DEMONSTRATION.md) · [Project Report](docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf) · [Report an Issue](https://github.com/xuzihao723/StudentComplaintAndManagementSystem/issues)
 
 </div>
 
-## 目录
+## Table of Contents
 
-- [项目简介](#about)
-- [功能与角色](#features)
-- [在线演示](#demo)
-- [技术栈](#stack)
-- [快速开始](#getting-started)
-- [配置说明](#configuration)
-- [项目结构与架构](#structure)
-- [主要 API](#api)
-- [测试与构建](#testing)
-- [云端部署](#deployment)
-- [项目文档](#documentation)
-- [当前限制与改进方向](#limitations)
-- [参与贡献](#contributing)
-- [许可证](#license)
-- [维护者与致谢](#acknowledgments)
+- [About the Project](#about)
+- [Features and Roles](#features)
+- [Live Demo](#demo)
+- [Technology Stack](#stack)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+- [Project Structure and Architecture](#structure)
+- [Main API Endpoints](#api)
+- [Testing and Building](#testing)
+- [Cloud Deployment](#deployment)
+- [Documentation](#documentation)
+- [Limitations and Improvement Opportunities](#limitations)
+- [Contributing](#contributing)
+- [License](#license)
+- [Maintainer and Acknowledgments](#acknowledgments)
 
 <a id="about"></a>
 
-## 项目简介
+## About the Project
 
-本项目为学生、学生事务专员、部门工作人员和管理员提供统一的投诉与反馈处理平台，将提交、分派、进度更新、解决和关闭串联为可追踪的工作流程。匿名用户也可以在允许匿名的分类下提交投诉，并使用跟踪码查询处理情况。
+This project provides a shared platform for students, student affairs officers, department staff, and administrators to manage campus complaints and feedback. It connects submission, assignment, progress updates, resolution, and closure in a traceable workflow. Anonymous users can submit complaints in categories that permit anonymous reporting and use a tracking code to check progress.
 
-项目采用前后端分离架构，包含 Vue 前端、Spring Boot API、关系数据库、附件存储、通知和审计记录。作为面向对象分析与设计（OOAD）课程项目，仓库同时提供项目报告、UML 与数据库设计图，以及课堂演示指南。
+The application uses a separate Vue frontend and Spring Boot backend, with a relational database, attachment storage, notifications, and audit records. Developed as an Object-Oriented Analysis and Design (OOAD) course project, the repository also includes a project report, UML and database diagrams, and a classroom demonstration guide.
 
 <a id="features"></a>
 
-## 功能与角色
+## Features and Roles
 
-| 使用者 | 身份标识 | 主要功能 |
+| User | Role identifier | Main capabilities |
 | --- | --- | --- |
-| 学生 | `STUDENT` | 注册与登录、提交投诉、上传证据、查看案件和消息、提交后续反馈与满意度评价 |
-| 匿名用户 | 无需登录 | 在允许匿名的分类下提交投诉，凭跟踪码查询案件和补充消息 |
-| 学生事务专员 | `OFFICER` | 审阅新案件、要求补充信息、分派到部门、关闭案件、查看周报 |
-| 部门工作人员 | `DEPARTMENT_STAFF` | 查看分派到本部门的案件、更新进度、回复和标记解决 |
-| 管理员 | `ADMIN` | 管理用户、部门和分类，生成与导出报表，配置邮件，查看审计日志 |
+| Student | `STUDENT` | Register and log in, submit complaints, upload evidence, view cases and messages, provide follow-up feedback and satisfaction ratings |
+| Anonymous user | No login required | Submit complaints in eligible categories, track cases, and add messages using a tracking code |
+| Student Affairs Officer | `OFFICER` | Review new cases, request additional information, assign departments, close cases, and view weekly reports |
+| Department Staff | `DEPARTMENT_STAFF` | View cases assigned to their department, update progress, reply, and mark cases as resolved |
+| Administrator | `ADMIN` | Manage users, departments, and categories; generate and export reports; configure email; and inspect audit logs |
 
-系统还支持：
+Additional capabilities include:
 
-- **身份与权限：** JWT 登录会话、BCrypt 密码哈希、按角色和案件归属控制访问。
-- **案件协作：** 案件编号、状态记录、消息、内部备注、提醒与逾期监控。
-- **附件管理：** 支持 PNG、JPEG、GIF、PDF、DOC、DOCX；单文件上限 10 MB，单次上传请求上限 30 MB。
-- **通知与报表：** 站内通知、可选 SMTP / Resend 邮件通知，以及周报生成和导出。
-- **本地与部署环境：** H2 文件数据库用于快速演示，MySQL 用于独立数据库运行。
+- **Authentication and authorization:** JWT sessions, BCrypt password hashing, and access control based on roles and case ownership.
+- **Case collaboration:** Case numbers, status history, messages, internal notes, reminders, and overdue monitoring.
+- **Attachments:** PNG, JPEG, GIF, PDF, DOC, and DOCX support, with a 10 MB limit per file and a 30 MB limit per upload request.
+- **Notifications and reports:** In-app notifications, optional SMTP / Resend email delivery, and weekly report generation and export.
+- **Runtime options:** A file-based H2 database for quick local demonstrations and MySQL for a separate database service.
 
 <a id="demo"></a>
 
-## 在线演示
+## Live Demo
 
-**演示入口：[student-complaint-frontend.onrender.com](https://student-complaint-frontend.onrender.com/)**
+**Open the application: [student-complaint-frontend.onrender.com](https://student-complaint-frontend.onrender.com/)**
 
-### 演示账号
+### Demo Accounts
 
-后端启动时会创建以下初始账号；若同名账号已经存在，则保留现有账号。在线环境的账号和数据可能被演示操作修改。
+The backend creates the following initial accounts on startup. Existing accounts with the same username are retained. Accounts and data in the online environment may change during demonstrations.
 
-| 角色 | 用户名 | 初始密码 |
+| Role | Username | Initial password |
 | --- | --- | --- |
-| 管理员 | `admin` | `Admin123!` |
-| 学生事务专员 | `officer` | `Officer123!` |
-| 校园设施部门工作人员 | `facility_staff` | `Staff123!` |
-| 教务部门工作人员 | `academic_staff` | `Staff123!` |
-| 学生 | `student1` | `Student123!` |
+| Administrator | `admin` | `Admin123!` |
+| Student Affairs Officer | `officer` | `Officer123!` |
+| Campus Facilities Staff | `facility_staff` | `Staff123!` |
+| Academic Affairs Staff | `academic_staff` | `Staff123!` |
+| Student | `student1` | `Student123!` |
 
-这些账号用于课程演示。公开部署前应修改初始密码和默认 JWT 密钥。
+These accounts are intended for course demonstrations. Change the initial passwords and default JWT secret before a public deployment.
 
-### 建议演示流程
+### Suggested Demonstration Flow
 
-1. 以 `student1` 登录，提交投诉并查看案件编号、状态和消息。
-2. 退出登录，选择允许匿名的分类提交投诉，保存跟踪码并查询案件。
-3. 以 `officer` 登录，将案件分派给对应部门。
-4. 以部门工作人员登录，更新处理进度并标记解决。
-5. 返回专员界面关闭案件，再展示管理员的用户管理、报表与审计日志。
+1. Log in as `student1`, submit a complaint, and inspect its case number, status, and messages.
+2. Log out, submit an anonymous complaint in an eligible category, save the tracking code, and use it to track the case.
+3. Log in as `officer` and assign the case to the appropriate department.
+4. Log in as department staff, update progress, and mark the case as resolved.
+5. Return to the officer account to close the case, then demonstrate the administrator's user management, reports, and audit logs.
 
-详细步骤见 [System Demonstration Guide](docs/SYSTEM_DEMONSTRATION.md)。
+See the [System Demonstration Guide](docs/SYSTEM_DEMONSTRATION.md) for detailed steps.
 
 <a id="stack"></a>
 
-## 技术栈
+## Technology Stack
 
-| 层次 | 技术 | 用途 |
+| Layer | Technologies | Purpose |
 | --- | --- | --- |
-| 前端 | Vue 3.5、Element Plus 2.8、Vite 5.4 | 角色界面、表单和前端构建 |
-| HTTP 客户端 | Axios | API 请求与 JWT 请求头 |
-| 后端 | Java 17、Spring Boot 3.3.5 | REST API 与业务逻辑 |
-| 安全 | Spring Security、JWT、BCrypt | 身份认证、权限校验与密码存储 |
-| 数据访问 | Spring Data JPA、Hibernate | 实体映射与持久化 |
-| 数据库 | H2 / MySQL 8.4（Docker Compose） | 本地演示 / 独立数据库 |
-| 邮件 | Spring Mail、Resend HTTP API | 可选邮件通知 |
-| 测试 | JUnit、Spring Boot Test、Vitest | 后端逻辑与前端模块测试 |
+| Frontend | Vue 3.5, Element Plus 2.8, Vite 5.4 | Role-specific interfaces, forms, and frontend builds |
+| HTTP client | Axios | API requests and JWT headers |
+| Backend | Java 17, Spring Boot 3.3.5 | REST APIs and business logic |
+| Security | Spring Security, JWT, BCrypt | Authentication, authorization, and password storage |
+| Data access | Spring Data JPA, Hibernate | Entity mapping and persistence |
+| Database | H2 / MySQL 8.4 (Docker Compose) | Local demonstrations / separate database service |
+| Email | Spring Mail, Resend HTTP API | Optional email notifications |
+| Testing | JUnit, Spring Boot Test, Vitest | Backend logic and frontend module tests |
 
-版本依据 [backend/pom.xml](backend/pom.xml) 和 [frontend/package.json](frontend/package.json)；前端实际依赖版本由 `package-lock.json` 锁定。
+Versions are based on [backend/pom.xml](backend/pom.xml) and [frontend/package.json](frontend/package.json). Resolved frontend dependency versions are locked in `package-lock.json`.
 
 <a id="getting-started"></a>
 
-## 快速开始
+## Getting Started
 
-### 环境要求
+### Prerequisites
 
 - Git
-- JDK 17 或更高版本，并配置 `JAVA_HOME`
+- JDK 17 or later, with `JAVA_HOME` configured
 - Maven 3.9.x
-- Node.js 20 或更高版本，以及 npm
-- Docker 与 Docker Compose（仅 MySQL 模式需要）
+- Node.js 20 or later and npm
+- Docker and Docker Compose (only required for MySQL mode)
 
-### 1. 获取项目
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/xuzihao723/StudentComplaintAndManagementSystem.git
 cd StudentComplaintAndManagementSystem
 ```
 
-### 2. 启动后端：H2 演示模式
+### 2. Start the Backend with H2
 
-在项目根目录打开终端：
+Open a terminal in the repository root:
 
 ```bash
 cd backend
 mvn spring-boot:run "-Dspring-boot.run.profiles=dev"
 ```
 
-该命令也适用于 Windows PowerShell。`dev` 配置使用文件型 H2 数据库，数据保存在 `backend/data/`，无需单独安装数据库。
+This command also works in Windows PowerShell. The `dev` profile uses a file-based H2 database stored in `backend/data/`, so no separate database installation is required.
 
-### 3. 启动前端
+### 3. Start the Frontend
 
-在项目根目录打开另一个终端：
+Open another terminal in the repository root:
 
 ```bash
 cd frontend
@@ -151,66 +151,66 @@ npm ci
 npm run dev
 ```
 
-| 入口 | 地址 / 配置 |
+| Entry point | Address / setting |
 | --- | --- |
-| 前端应用 | [http://localhost:5173](http://localhost:5173) |
-| 后端 API 基地址 | `http://localhost:8080/api` |
-| H2 控制台（仅 `dev` 配置） | [http://localhost:8080/h2-console](http://localhost:8080/h2-console) |
+| Frontend application | [http://localhost:5173](http://localhost:5173) |
+| Backend API base URL | `http://localhost:8080/api` |
+| H2 console (`dev` profile only) | [http://localhost:8080/h2-console](http://localhost:8080/h2-console) |
 | H2 JDBC URL | `jdbc:h2:file:./data/scfs-dev;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE` |
-| H2 用户名 / 密码 | `sa` / 留空 |
+| H2 username / password | `sa` / leave the password blank |
 
-前端开发服务器默认将 `/api` 请求代理到 `http://127.0.0.1:8080`。使用上方演示账号即可体验完整流程。
+The frontend development server proxies `/api` requests to `http://127.0.0.1:8080` by default. Use the demo accounts above to explore the workflow.
 
-### 4. 可选：使用 MySQL
+### 4. Optional: Use MySQL
 
-在项目根目录执行：
+From the repository root, run:
 
 ```bash
 docker compose up -d mysql
 ```
 
-等待 MySQL 完成初始化后，启动后端，**不要启用 `dev` 配置**：
+Wait for MySQL to finish initializing, then start the backend **without the `dev` profile**:
 
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-Compose 默认创建数据库 `scfs`、用户 `scfs` 和本地演示密码 `scfs_password`，映射端口为 `3306`，与后端默认配置一致。前端启动方式不变。Docker 命名卷 `scfs_mysql_data` 用于保存数据库数据。
+Compose creates the `scfs` database and `scfs` user with the local demo password `scfs_password`, and exposes port `3306`. These values match the default backend configuration. Start the frontend as described above. The Docker named volume `scfs_mysql_data` stores database data.
 
 <a id="configuration"></a>
 
-## 配置说明
+## Configuration
 
-后端配置见 [application.yml](backend/src/main/resources/application.yml) 和 [application-dev.yml](backend/src/main/resources/application-dev.yml)。
+Backend settings are defined in [application.yml](backend/src/main/resources/application.yml) and [application-dev.yml](backend/src/main/resources/application-dev.yml).
 
-| 环境变量 | 默认值 | 说明 |
+| Environment variable | Default | Description |
 | --- | --- | --- |
-| `PORT` | `8080` | 后端监听端口 |
-| `DB_URL` | 本地 MySQL 的 `scfs` 数据库 | JDBC 连接地址；`dev` 配置使用自己的 H2 地址 |
-| `DB_USERNAME` / `DB_PASSWORD` | `scfs` / `scfs_password` | MySQL 凭据；`dev` 配置使用 H2 凭据 |
-| `JWT_SECRET` | 内置演示密钥 | 公开部署时替换为随机密钥 |
-| `JWT_EXPIRATION_MINUTES` | `480` | 登录令牌有效时长，单位为分钟 |
-| `UPLOAD_DIR` | `uploads` | 后端附件目录；`dev` 配置固定使用 `uploads` |
-| `FRONTEND_URL` | `http://localhost:5173` | 邮件等功能使用的前端地址 |
-| `CORS_ALLOWED_ORIGIN_PATTERNS` | `http://localhost:*,http://127.0.0.1:*` | 允许跨域访问的来源，多个值以逗号分隔 |
-| `VITE_API_PROXY` | `http://127.0.0.1:8080` | 前端开发环境 `/api` 代理目标 |
-| `VITE_API_BASE_URL` | `/api` | 前端 API 基地址；独立部署时填写后端地址并包含 `/api` |
+| `PORT` | `8080` | Backend listening port |
+| `DB_URL` | Local MySQL `scfs` database | JDBC connection URL; the `dev` profile uses its own H2 URL |
+| `DB_USERNAME` / `DB_PASSWORD` | `scfs` / `scfs_password` | MySQL credentials; the `dev` profile uses H2 credentials |
+| `JWT_SECRET` | Built-in demo secret | Replace with a random secret for public deployments |
+| `JWT_EXPIRATION_MINUTES` | `480` | Login token lifetime in minutes |
+| `UPLOAD_DIR` | `uploads` | Backend attachment directory; the `dev` profile uses `uploads` directly |
+| `FRONTEND_URL` | `http://localhost:5173` | Frontend URL used by features such as email links |
+| `CORS_ALLOWED_ORIGIN_PATTERNS` | `http://localhost:*,http://127.0.0.1:*` | Allowed cross-origin patterns, separated by commas |
+| `VITE_API_PROXY` | `http://127.0.0.1:8080` | Frontend development proxy target for `/api` |
+| `VITE_API_BASE_URL` | `/api` | Frontend API base URL; include `/api` when using a separately deployed backend |
 
-`VITE_API_BASE_URL` 在前端构建时读取，修改后需重新构建。后端环境变量修改后需重启后端。
+`VITE_API_BASE_URL` is read during the frontend build. Rebuild the frontend after changing it, and restart the backend after changing backend environment variables.
 
-### 可选邮件通知
+### Optional Email Notifications
 
-站内通知与邮件发送分别记录。未配置邮件服务时，站内通知仍会保存，邮件状态会记录发送失败。
+In-app notifications and email delivery are recorded separately. Without a configured email service, in-app notifications are still saved and the email status records the delivery failure.
 
-配置方式：
+Configure either provider:
 
-- **Resend：** 设置 `EMAIL_API_PROVIDER=resend`、`RESEND_API_KEY` 和 `RESEND_FROM_ADDRESS`。
-- **SMTP：** 设置 `MAIL_HOST`、`MAIL_PORT`、`MAIL_USERNAME`、`MAIL_PASSWORD`，并在管理员邮件设置中检查发件地址、认证和 TLS 配置。
+- **Resend:** Set `EMAIL_API_PROVIDER=resend`, `RESEND_API_KEY`, and `RESEND_FROM_ADDRESS`.
+- **SMTP:** Set `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, and `MAIL_PASSWORD`; review the sender address, authentication, and TLS settings in the administrator's email settings page.
 
-配置完成后，还需以管理员身份进入邮件设置页面，启用发送并使用测试功能验证。当 Resend 已配置时，邮件服务优先选择 Resend。
+After configuration, log in as an administrator, enable email delivery in the settings page, and use the test feature to verify delivery. The email service selects Resend first when it is configured.
 
-PowerShell 环境变量示例（在启动后端的同一终端执行）：
+PowerShell example (run in the same terminal used to start the backend):
 
 ```powershell
 $env:EMAIL_API_PROVIDER = "resend"
@@ -218,7 +218,7 @@ $env:RESEND_API_KEY = "your-resend-api-key"
 $env:RESEND_FROM_ADDRESS = "Complaint System <no-reply@example.com>"
 ```
 
-Bash 环境变量示例：
+Bash example:
 
 ```bash
 export EMAIL_API_PROVIDER="resend"
@@ -228,81 +228,82 @@ export RESEND_FROM_ADDRESS="Complaint System <no-reply@example.com>"
 
 <a id="structure"></a>
 
-## 项目结构与架构
+## Project Structure and Architecture
 
 ```text
 StudentComplaintAndManagementSystem/
 ├── backend/
 │   ├── src/main/java/edu/demo/scfs/
-│   │   ├── config/          # 初始数据与配置
-│   │   ├── domain/          # 领域实体与枚举
-│   │   ├── repository/      # JPA 数据访问
-│   │   ├── security/        # JWT 与权限控制
-│   │   ├── service/         # 案件、通知和报表等业务逻辑
-│   │   └── web/             # REST 控制器与 DTO
-│   ├── src/main/resources/  # MySQL / H2 配置
-│   ├── src/test/            # 后端测试
+│   │   ├── config/          # Initial data and configuration
+│   │   ├── domain/          # Domain entities and enums
+│   │   ├── repository/      # JPA data access
+│   │   ├── security/        # JWT and access control
+│   │   ├── service/         # Case, notification, and report logic
+│   │   └── web/             # REST controllers and DTOs
+│   ├── src/main/resources/  # MySQL / H2 configuration
+│   ├── src/test/            # Backend tests
 │   ├── Dockerfile
 │   └── pom.xml
 ├── frontend/
-│   ├── src/                # Vue 界面、API 客户端与模块测试
-│   ├── public/             # 静态资源
+│   ├── src/                # Vue UI, API client, and module tests
+│   ├── public/             # Static assets
 │   ├── package.json
 │   └── package-lock.json
 ├── docs/
 │   ├── SYSTEM_DEMONSTRATION.md
 │   └── project-documentation/
-│       ├── figures/        # 架构、UML、ER 与流程图
-│       └── ...             # 项目报告与 LaTeX 源码
-├── docker-compose.yml      # 本地 MySQL 服务
+│       ├── figures/        # Architecture, UML, ER, and workflow diagrams
+│       └── ...             # Project report and LaTeX source
+├── docker-compose.yml      # Local MySQL service
 ├── DEPLOYMENT_RENDER_AIVEN.md
 ├── PRODUCT.md
 ├── DESIGN.md
-└── README.md
+├── README.md               # English repository homepage
+└── README.zh-CN.md         # Chinese documentation
 ```
 
-前端经 API 客户端访问 Spring Boot 控制器，业务服务通过 JPA 保存数据，并调用附件存储、通知和审计模块。
+The frontend API client calls Spring Boot controllers. Business services persist data through JPA and coordinate attachment storage, notifications, and audit records.
 
 <details>
-<summary>展开查看项目报告中的系统架构图</summary>
+<summary>View the system architecture diagram from the project report</summary>
 
-![系统架构：角色界面、API、安全、业务服务与数据存储](docs/project-documentation/figures/figure1_system_architecture.png)
+![System architecture: role-based UI, API, security, business services, and data storage](docs/project-documentation/figures/figure1_system_architecture.png)
 
-图中的 University SSO 是设计中的可选扩展，当前实现使用本地账号认证。
+University SSO is shown as an optional design extension. The current implementation authenticates local accounts.
 
 </details>
 
 <a id="api"></a>
 
-## 主要 API
+## Main API Endpoints
 
-以下为常用接口摘要；完整路由与请求字段见 [后端控制器及 DTO](backend/src/main/java/edu/demo/scfs/web)。受保护接口使用 `Authorization: Bearer <token>`，提交案件和证据使用 `multipart/form-data`。
+The table below summarizes common endpoints. See the [backend controllers and DTOs](backend/src/main/java/edu/demo/scfs/web) for complete routes and request fields. Protected endpoints require `Authorization: Bearer <token>`. Case submission with evidence uses `multipart/form-data`.
 
-| 模块 | 方法与路径 | 用途 |
+| Area | Method and path | Purpose |
 | --- | --- | --- |
-| 身份认证 | `POST /api/auth/register/student`、`POST /api/auth/login`、`GET /api/auth/me` | 学生注册、登录、获取当前用户 |
-| 基础数据 | `GET /api/reference/departments`、`GET /api/reference/categories` | 查询部门与分类 |
-| 匿名案件 | `POST /api/public/cases`、`POST /api/public/cases/track`、`POST /api/public/cases/track/messages` | 提交、跟踪与补充消息 |
-| 学生案件 | `POST /api/student/cases`、`GET /api/student/cases` | 提交与查询本人案件 |
-| 学生反馈 | `POST /api/student/cases/{id}/messages`、`POST /api/student/cases/{id}/follow-up` | 发送消息与后续反馈 |
-| 专员处理 | `GET /api/officer/cases/new`、`POST /api/officer/cases/{id}/assign` | 查看新案件与分派 |
-| 补充与关闭 | `POST /api/officer/cases/{id}/request-info`、`POST /api/officer/cases/{id}/close` | 要求补充资料与关闭案件 |
-| 部门处理 | `GET /api/department/cases`、`POST /api/department/cases/{id}/progress`、`POST /api/department/cases/{id}/resolve` | 查看分派、更新进度与标记解决 |
-| 用户管理 | `GET /api/admin/users`、`POST /api/admin/users` | 查询与创建用户 |
-| 周报 | `GET /api/admin/reports/weekly`、`POST /api/admin/reports/weekly/generate` | 查看与生成周报 |
-| 通知与审计 | `GET /api/notifications`、`GET /api/admin/audit-logs` | 当前用户通知与管理员审计记录 |
+| Authentication | `POST /api/auth/register/student`, `POST /api/auth/login`, `GET /api/auth/me` | Student registration, login, and current user details |
+| Reference data | `GET /api/reference/departments`, `GET /api/reference/categories` | List departments and categories |
+| Anonymous cases | `POST /api/public/cases`, `POST /api/public/cases/track`, `POST /api/public/cases/track/messages` | Submit, track, and add messages |
+| Student cases | `POST /api/student/cases`, `GET /api/student/cases` | Submit and list the student's cases |
+| Student feedback | `POST /api/student/cases/{id}/messages`, `POST /api/student/cases/{id}/follow-up` | Send messages and follow-up feedback |
+| Officer processing | `GET /api/officer/cases/new`, `POST /api/officer/cases/{id}/assign` | Review new cases and assign departments |
+| Information and closure | `POST /api/officer/cases/{id}/request-info`, `POST /api/officer/cases/{id}/close` | Request more information and close cases |
+| Department processing | `GET /api/department/cases`, `POST /api/department/cases/{id}/progress`, `POST /api/department/cases/{id}/resolve` | View assignments, update progress, and mark resolution |
+| User management | `GET /api/admin/users`, `POST /api/admin/users` | List and create users |
+| Weekly reports | `GET /api/admin/reports/weekly`, `POST /api/admin/reports/weekly/generate` | View and generate reports |
+| Notifications and audit | `GET /api/notifications`, `GET /api/admin/audit-logs` | Current user's notifications and administrator audit records |
 
 <a id="testing"></a>
 
-## 测试与构建
+## Testing and Building
 
-在项目根目录执行后端测试：
+Run backend tests from the repository root:
 
 ```bash
 mvn -f backend/pom.xml test
 ```
 
-在项目根目录执行前端测试与构建：
+Run frontend tests and build from the repository root:
 
 ```bash
 npm --prefix frontend ci
@@ -310,89 +311,89 @@ npm --prefix frontend test
 npm --prefix frontend run build
 ```
 
-后端测试覆盖案件编号、跟踪码、分类策略、SLA 策略、通知流、邮件设置和个人资料逻辑；前端测试覆盖 API 客户端和界面展示模块。前端构建输出在 `frontend/dist/`。
+Backend tests cover case numbers, tracking codes, category policies, SLA policies, notification flows, email settings, and profile logic. Frontend tests cover the API client and presentation modules. The frontend build output is stored in `frontend/dist/`.
 
-需要后端可执行 JAR 时运行：
+To create an executable backend JAR:
 
 ```bash
 mvn -f backend/pom.xml package
 ```
 
-输出位于 `backend/target/`。现有单元测试不能替代完整的浏览器流程验证，建议结合演示指南检查各角色操作。
+The output is stored in `backend/target/`. The existing unit tests should be supplemented with browser workflow checks using the demonstration guide.
 
 <a id="deployment"></a>
 
-## 云端部署
+## Cloud Deployment
 
-仓库提供 [Render + Aiven 部署指南](DEPLOYMENT_RENDER_AIVEN.md)：
+See the [Render + Aiven deployment guide](DEPLOYMENT_RENDER_AIVEN.md):
 
-| 组件 | 部署方式 | 关键设置 |
+| Component | Deployment method | Key settings |
 | --- | --- | --- |
-| 后端 | Render Web Service，Docker 运行时 | 根目录 `backend`，使用现有 `Dockerfile`，配置数据库、JWT 与 CORS |
-| 前端 | Render Static Site | 根目录 `frontend`；构建命令 `npm ci && npm run build`；发布目录 `dist` |
-| 数据库 | Aiven MySQL | 将连接地址与凭据配置到后端环境变量 |
+| Backend | Render Web Service with Docker | Root directory `backend`; use the existing `Dockerfile` and configure the database, JWT, and CORS |
+| Frontend | Render Static Site | Root directory `frontend`; build command `npm ci && npm run build`; publish directory `dist` |
+| Database | Aiven MySQL | Configure the connection URL and credentials in the backend environment |
 
-前端构建时将 `VITE_API_BASE_URL` 设置为实际后端地址，例如 `https://your-backend.onrender.com/api`；后端的 `FRONTEND_URL` 和 CORS 来源应对应实际前端域名。
+Set `VITE_API_BASE_URL` to the actual backend address during the frontend build, for example `https://your-backend.onrender.com/api`. Set the backend's `FRONTEND_URL` and allowed CORS origins to match the actual frontend domain.
 
-部署指南包含免费层演示方案，具体套餐、额度和休眠规则以服务商当前说明为准。附件使用容器本地目录，部署时应配置持久化存储。仓库首页发布到 GitHub 后，在线应用仍由上述服务运行。
+The guide includes a free-tier demonstration setup. Check the providers' current plans, quotas, and inactivity policies when deploying. Attachments are stored in the container's local directory, so configure persistent storage for deployments. The online application runs on these services, while GitHub hosts the repository and documentation.
 
 <a id="documentation"></a>
 
-## 项目文档
+## Documentation
 
-| 文档 | 内容 |
+| Document | Contents |
 | --- | --- |
-| [系统演示指南](docs/SYSTEM_DEMONSTRATION.md) | 演示账号、操作流程与课程展示要求 |
-| [项目报告 PDF](docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf) | 需求分析、面向对象设计与系统说明 |
-| [项目报告 LaTeX 源码](docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.tex) | 报告的可编辑源文件 |
-| [项目标题与范围声明](Project_Title_and_Scope_Statement.pdf) | 项目选题与范围 |
-| [产品说明](PRODUCT.md) | 功能范围与产品需求 |
-| [设计说明](DESIGN.md) | 技术设计与实现约定 |
-| [设计图目录](docs/project-documentation/figures) | 架构图、用例图、类图、活动图、时序图、ER 图与角色导航图 |
-| [云端部署指南](DEPLOYMENT_RENDER_AIVEN.md) | Render 前后端与 Aiven MySQL 的部署步骤 |
+| [System Demonstration Guide](docs/SYSTEM_DEMONSTRATION.md) | Demo accounts, workflows, and course presentation requirements |
+| [Project Report PDF](docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.pdf) | Requirements analysis, object-oriented design, and system description |
+| [Project Report LaTeX Source](docs/project-documentation/Student_Complaint_and_Feedback_Management_System_Project_Report.tex) | Editable report source |
+| [Project Title and Scope Statement](Project_Title_and_Scope_Statement.pdf) | Project topic and scope |
+| [Product Specification](PRODUCT.md) | Feature scope and product requirements |
+| [Design Specification](DESIGN.md) | Technical design and implementation conventions |
+| [Design Diagrams](docs/project-documentation/figures) | Architecture, use-case, class, activity, sequence, ER, and role navigation diagrams |
+| [Cloud Deployment Guide](DEPLOYMENT_RENDER_AIVEN.md) | Render frontend/backend and Aiven MySQL deployment steps |
 
 <a id="limitations"></a>
 
-## 当前限制与改进方向
+## Limitations and Improvement Opportunities
 
-- **项目定位：** 当前版本用于课程展示和原型验证；公开运行需要结合实际环境完善配置与运维。
-- **身份集成：** 大学 SSO 仅作为设计扩展，尚未接入。
-- **附件存储：** 当前保存在后端本地目录，容器重建可能导致文件丢失；可进一步接入持久化卷或对象存储。
-- **邮件通知：** 依赖有效的服务凭据和管理员配置，发送结果以通知记录中的邮件状态为准。
-- **附件扫描：** 当前文件存储代码检查大小和 MIME 类型，尚未接入真实的病毒扫描服务。
+- **Project scope:** The current version is intended for course demonstrations and prototype validation. Public operation requires configuration and operational practices suited to the deployment environment.
+- **Identity integration:** University SSO remains a design extension and has not been integrated.
+- **Attachment storage:** Files are stored locally on the backend and may be lost when containers are recreated. Persistent volumes or object storage are possible improvements.
+- **Email delivery:** Delivery depends on valid service credentials and administrator settings. Check the email status in notification records for delivery results.
+- **Attachment scanning:** File storage currently validates size and MIME type. A real antivirus scanning service has not been integrated.
 
 <a id="contributing"></a>
 
-## 参与贡献
+## Contributing
 
-欢迎通过 [Issues](https://github.com/xuzihao723/StudentComplaintAndManagementSystem/issues) 提交问题或改进建议。问题报告请附上运行环境、复现步骤、预期行为与实际结果。
+Use [Issues](https://github.com/xuzihao723/StudentComplaintAndManagementSystem/issues) to report problems or suggest improvements. Include your environment, reproduction steps, expected behavior, and actual results in a bug report.
 
-提交代码的建议流程：
+Suggested contribution workflow:
 
-1. Fork 仓库并创建功能分支。
-2. 完成修改，更新相关说明。
-3. 执行与修改相关的测试；前端修改还需检查构建结果。
-4. 提交 Pull Request，说明修改内容和验证结果。
+1. Fork the repository and create a feature branch.
+2. Make your changes and update the relevant documentation.
+3. Run tests relevant to your changes; also check the build for frontend changes.
+4. Open a pull request describing the changes and validation results.
 
-请勿将真实数据库密码、邮件凭据、JWT 密钥或个人投诉数据提交到仓库。
+Do not commit real database passwords, email credentials, JWT secrets, or personal complaint data. Keep both README language versions aligned when updating shared documentation.
 
 <a id="license"></a>
 
-## 许可证
+## License
 
-当前仓库尚未提供 `LICENSE` 文件，授权方式有待维护者明确。
+The repository does not currently include a `LICENSE` file. Licensing terms are awaiting clarification from the maintainer.
 
 <a id="acknowledgments"></a>
 
-## 维护者与致谢
+## Maintainer and Acknowledgments
 
-维护者：[xuzihao723](https://github.com/xuzihao723) · 项目仓库：[StudentComplaintAndManagementSystem](https://github.com/xuzihao723/StudentComplaintAndManagementSystem)
+Maintainer: [xuzihao723](https://github.com/xuzihao723) · Repository: [StudentComplaintAndManagementSystem](https://github.com/xuzihao723/StudentComplaintAndManagementSystem)
 
-README 的组织与展示方式参考：
+The README structure and presentation are inspired by:
 
-- [Awesome README](https://github.com/matiassingers/awesome-readme)：清晰简介、技术标识、目录导航与可视化文档。
-- [Best README Template](https://github.com/othneildrew/Best-README-Template)：项目介绍、安装使用、贡献、许可证与致谢的分区结构。
+- [Awesome README](https://github.com/matiassingers/awesome-readme): Clear introductions, technology badges, navigation, and visual documentation.
+- [Best README Template](https://github.com/othneildrew/Best-README-Template): Sections for project descriptions, installation, usage, contributions, licensing, and acknowledgments.
 
-感谢 Vue、Element Plus、Spring Boot 等开源项目。
+Thanks to the open-source projects behind Vue, Element Plus, Spring Boot, and the other dependencies.
 
-[返回顶部](#readme-top)
+[Back to Top](#readme-top)
